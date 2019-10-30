@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -113,54 +112,59 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
-// const accordion = document.querySelector('.accordion')
 
-// panelData.forEach(data => {
-//   accordion.appendChild(createPanel(data.title, data.content))
-//// });//
-function newsCreator(title, date, art1, art2, art3) {
+/////Step 1////////////
+function newsCreator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+
 //new elements//
-  const articles = document.createElement('div');
-  const titles = document.createElement('h2');
-  const pDate = document.createElement('p');
-  const articleOne = document.createElement('p');
-  const articleTwo = document.createElement('p');
-  const articleThree = document.createElement('p');  
-  const btnExpand = document.createElement('span');
+const article = document.createElement('div')
+const titles = document.createElement('h2');
+const pDate = document.createElement('p');
+const articleOne = document.createElement('p');
+const articleTwo = document.createElement('p');
+const articleThree = document.createElement('p');
+const button = document.createElement('span');
 
-  
+
 //structure of elements//  
-  article.appendChild(titles); 
-  article.appendChild(pDate); 
-  article.appendChild(articleOne); 
-  article.appendChild(articleTwo);
-  article.appendChild(articleThree);
-  article.appendChild(btnExpand);
-
-  //Class names set//
-  articles.classList.add('article');
-  pDate.classList.add('date');
-  btnExpand.classList.add('expandButton')
-
-  //set text content//
-  titles.textContent = title;
-  pDate.textContent = date;
-  articleOne.textContent = art1;
-  articleTwo.textContent = art2;
-  articleThree.textContent = art3;
- 
+article.appendChild(titles);
+article.appendChild(pDate);
+article.appendChild(articleOne);
+article.appendChild(articleTwo);
+article.appendChild(articleThree);
+article.appendChild(button);
 
 
+//Class names set//
+article.classList.add('article');
+pDate.classList.add('date');
+button.classList.add('expandButton')
 
 
+//set text content//
+titles.textContent = title;
+pDate.textContent = date;
+articleOne.textContent = firstParagraph;
+articleTwo.textContent = secondParagraph;
+articleThree.textContent = thirdParagraph;
+buttonClose.textContent = 'Expand';
 
+///Step 2//////////////////////
+///// button events //////
 
+btnExpand.addEventListener('click', () => {
 
-
-
-
-
-
-
-
+  button.classList.toggle('article-open');
+})
+//step  3//////////////////////
+return article;
 }
+
+///step 4 //////////////////////
+const article = document.querySelector('.articles');
+
+
+data.forEach(news => {
+  article.appendChild(newsCreator(news.title, news.date, news.firstParagraph, news.secondParagraph, news.thirdParagraph))
+});
+
