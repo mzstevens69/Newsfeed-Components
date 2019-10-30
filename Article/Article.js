@@ -99,6 +99,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -112,3 +113,54 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+// const accordion = document.querySelector('.accordion')
+
+// panelData.forEach(data => {
+//   accordion.appendChild(createPanel(data.title, data.content))
+//// });//
+function newsCreator(title, date, art1, art2, art3) {
+//new elements//
+  const articles = document.createElement('div');
+  const titles = document.createElement('h2');
+  const pDate = document.createElement('p');
+  const articleOne = document.createElement('p');
+  const articleTwo = document.createElement('p');
+  const articleThree = document.createElement('p');  
+  const btnExpand = document.createElement('span');
+
+  
+//structure of elements//  
+  article.appendChild(titles); 
+  article.appendChild(pDate); 
+  article.appendChild(articleOne); 
+  article.appendChild(articleTwo);
+  article.appendChild(articleThree);
+  article.appendChild(btnExpand);
+
+  //Class names set//
+  articles.classList.add('article');
+  pDate.classList.add('date');
+  btnExpand.classList.add('expandButton')
+
+  //set text content//
+  titles.textContent = title;
+  pDate.textContent = date;
+  articleOne.textContent = art1;
+  articleTwo.textContent = art2;
+  articleThree.textContent = art3;
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
