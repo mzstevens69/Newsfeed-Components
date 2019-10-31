@@ -114,57 +114,83 @@ const data = [{
 */
 
 /////Step 1////////////
-function newsCreator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+function newsCreator(comp) {
 
-//new elements//
-const article = document.createElement('div')
-const titles = document.createElement('h2');
-const pDate = document.createElement('p');
-const articleOne = document.createElement('p');
-const articleTwo = document.createElement('p');
-const articleThree = document.createElement('p');
-const button = document.createElement('span');
-
-
-//structure of elements//  
-article.appendChild(titles);
-article.appendChild(pDate);
-article.appendChild(articleOne);
-article.appendChild(articleTwo);
-article.appendChild(articleThree);
-article.appendChild(button);
+  //new elements//
+  const article = document.createElement('div')
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const articleOne = document.createElement('p');
+  const articleTwo = document.createElement('p');
+  const articleThree = document.createElement('p');
+  const button = document.createElement('span');
 
 
-//Class names set//
-article.classList.add('article');
-pDate.classList.add('date');
-button.classList.add('expandButton')
+  //structure of elements//  
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(articleOne);
+  article.appendChild(articleTwo);
+  article.appendChild(articleThree);
+  article.appendChild(button);
 
 
-//set text content//
-titles.textContent = title;
-pDate.textContent = date;
-articleOne.textContent = firstParagraph;
-articleTwo.textContent = secondParagraph;
-articleThree.textContent = thirdParagraph;
-buttonClose.textContent = 'Expand';
+  //Class names set//
+  article.classList.add('article');
+  date.classList.add('date');
+  button.classList.add('expandButton')
 
-///Step 2//////////////////////
-///// button events //////
 
-btnExpand.addEventListener('click', () => {
+  //set text content//
+  title.textContent = comp.title;
+  date.textContent = comp.date;
+  articleOne.textContent = comp.firstParagraph;
+  articleTwo.textContent = comp.secondParagraph;
+  articleThree.textContent = comp.thirdParagraph;
+  button.textContent = 'Expand';
 
-  button.classList.toggle('article-open');
-})
-//step  3//////////////////////
-return article;
+  ///Step 2//////////////////////
+  ///// button events //////
+
+  button.addEventListener('click', () => {
+
+    article.classList.toggle('article-open');
+  })
+  //step  3//////////////////////
+  return article;
 }
 
 ///step 4 //////////////////////
 const article = document.querySelector('.articles');
 
 
-data.forEach(news => {
-  article.appendChild(newsCreator(news.title, news.date, news.firstParagraph, news.secondParagraph, news.thirdParagraph));
+let articleArray = data.map(item => {
+  let article = newsCreator(item);
+  return article;
 });
+console.log('These are the articles', articleArray);
 
+articleArray.forEach(item => {
+  article.appendChild(item);
+})
+
+
+let newArticle = {
+  title: 'What can you bring to the Table for 2019',
+  date: 'Oct 31st, 2019',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+  secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+}
+const addArt = document.querySelector('.articles');
+const newArt = newsCreator(newArticle);
+addArt.appendChild(newArt);
