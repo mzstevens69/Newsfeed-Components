@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -99,6 +98,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -112,3 +112,85 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+/////Step 1////////////
+function newsCreator(comp) {
+
+  //new elements//
+  const article = document.createElement('div')
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const articleOne = document.createElement('p');
+  const articleTwo = document.createElement('p');
+  const articleThree = document.createElement('p');
+  const button = document.createElement('span');
+
+
+  //structure of elements//  
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(articleOne);
+  article.appendChild(articleTwo);
+  article.appendChild(articleThree);
+  article.appendChild(button);
+
+
+  //Class names set//
+  article.classList.add('article');
+  date.classList.add('date');
+  button.classList.add('expandButton')
+
+
+  //set text content//
+  title.textContent = comp.title;
+  date.textContent = comp.date;
+  articleOne.textContent = comp.firstParagraph;
+  articleTwo.textContent = comp.secondParagraph;
+  articleThree.textContent = comp.thirdParagraph;
+  button.textContent = 'Expand';
+
+  ///Step 2//////////////////////
+  ///// button events //////
+
+  button.addEventListener('click', () => {
+
+    article.classList.toggle('article-open');
+  })
+  //step  3//////////////////////
+  return article;
+}
+
+///step 4 //////////////////////
+const article = document.querySelector('.articles');
+
+
+let articleArray = data.map(item => {
+  let article = newsCreator(item);
+  return article;
+});
+console.log('These are the articles', articleArray);
+
+articleArray.forEach(item => {
+  article.appendChild(item);
+})
+
+
+let newArticle = {
+  title: 'What can you bring to the Table for 2019',
+  date: 'Oct 31st, 2019',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+  secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+}
+const addArt = document.querySelector('.articles');
+const newArt = newsCreator(newArticle);
+addArt.appendChild(newArt);
